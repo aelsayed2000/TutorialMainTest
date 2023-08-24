@@ -3,14 +3,20 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-    <constant name="struts.devMode" value="true" />
-    <constant name="struts.custom.i18n.resources" value="global" />
+    <!-- ... Other configuration ... -->
 
     <package name="basicstruts2" extends="struts-default">
-        <!-- Other action mappings -->
+        <!-- ... Other action mappings ... -->
 
         <action name="updateSports" class="org.apache.struts.helloworld.action.HelloWorldAction" method="updateSports">
             <result name="success">/helloWorld.jsp</result>
+            <result name="input">/helloWorld.jsp</result> <!-- Display input form with validation errors -->
+        </action>
+
+    <action name="helloWorld" class="org.apache.struts.helloworld.action.HelloWorldAction" method="helloWorld">
+        <result name="success">/helloWorld.jsp</result>
+        <result name="input">/HelloWorld.jsp</result>
+        
         </action>
     </package>
 </struts>

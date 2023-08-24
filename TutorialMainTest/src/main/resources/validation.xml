@@ -1,0 +1,13 @@
+<validators>
+    <field name="personBean.name">
+        <field-validator type="requiredstring">
+            <message>Name is required.</message>
+        </field-validator>
+    </field>
+    <field name="personBean.sport">
+        <field-validator type="requiredstring">
+            <message>Sport is required.</message>
+        </field-validator>
+    </field>
+    <!-- Add more validation rules if needed -->
+</validators>
