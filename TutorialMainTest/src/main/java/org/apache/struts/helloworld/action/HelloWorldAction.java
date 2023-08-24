@@ -1,39 +1,23 @@
 package org.apache.struts.helloworld.action;
 
-import org.apache.struts.helloworld.model.MessageStore;
-
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelloWorldAction extends ActionSupport {
-    private MessageStore messageStore;
+    private List<String> sports = new ArrayList<>();
+    private String newSport;
 
-    public String execute() {
-        messageStore = new MessageStore() ;
-        if (userName != null) {
-            messageStore.setMessage( messageStore.getMessage() + " " + userName);
+    // Getter and setter for sports
+
+    // Getter and setter for newSport
+
+    public String updateSports() {
+        if (newSport != null && !newSport.isEmpty()) {
+            sports.add(newSport);
         }
-        helloCount++;
         return SUCCESS;
-        
-    }	
-
-    public MessageStore getMessageStore() {
-        return messageStore;
-    }
-    
-    private static int helloCount = 0;
-	
-    public int getHelloCount() {
-        return helloCount;
-    }
-    
-    private String userName;
-
-    public String getUserName() {
-        return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    // Other methods...
 }
