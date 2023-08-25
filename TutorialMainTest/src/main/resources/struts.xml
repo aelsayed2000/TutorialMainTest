@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-    <!-- ... Other configuration ... -->
+    <!-- Other configuration -->
 
-    <package name="basicstruts2" extends="struts-default">
-        <!-- ... Other action mappings ... -->
+    <package name="basicstruts2" extends="struts-default" namespace="/">
+
+        <interceptors>
+            <interceptor-stack name="appDefaultStack">
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">ERROR</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="appDefaultStack" />
+
+        <global-results>
+            <result name="error">/error.jsp</result>
+        </global-results>
+
+        <global-allowed-methods>index, hello, helloWorld, updateSports</global-allowed-methods>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error" />
+        </global-exception-mappings>
+
+        <!-- Other action mappings -->
 
         <action name="updateSports" class="org.apache.struts.helloworld.action.HelloWorldAction" method="updateSports">
             <result name="success">/helloWorld.jsp</result>
-            <result name="input">/helloWorld.jsp</result> <!-- Display input form with validation errors -->
+            <result name="input">/helloWorld.jsp</result>
         </action>
 
-    <action name="helloWorld" class="org.apache.struts.helloworld.action.HelloWorldAction" method="helloWorld">
-        <result name="success">/helloWorld.jsp</result>
-        <result name="input">/HelloWorld.jsp</result>
-        
+        <action name="helloWorld" class="org.apache.struts.helloworld.action.HelloWorldAction" method="helloWorld">
+            <result name="success">/helloWorld.jsp</result>
+            <result name="input">/HelloWorld.jsp</result>
         </action>
+
     </package>
 </struts>
