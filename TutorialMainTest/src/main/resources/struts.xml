@@ -1,42 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-    <!-- Other configuration -->
+	<!-- Other configuration -->
 
-    <package name="basicstruts2" extends="struts-default" namespace="/">
+	<package name="basicstruts2" extends="struts-default">
 
-        <interceptors>
-            <interceptor-stack name="appDefaultStack">
-                <interceptor-ref name="defaultStack">
-                    <param name="exception.logEnabled">true</param>
-                    <param name="exception.logLevel">ERROR</param>
-                </interceptor-ref>
-            </interceptor-stack>
-        </interceptors>
+		<interceptors>
+			<interceptor-stack name="appDefaultStack">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
 
-        <default-interceptor-ref name="appDefaultStack" />
+		<default-interceptor-ref
+			name="appDefaultStack" />
 
-        <global-results>
-            <result name="error">/error.jsp</result>
-        </global-results>
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
 
-        <global-allowed-methods>index, hello, helloWorld, updateSports</global-allowed-methods>
+		<global-allowed-methods>index, hello, helloWorld, updateSports</global-allowed-methods>
 
-        <global-exception-mappings>
-            <exception-mapping exception="java.lang.Exception" result="error" />
-        </global-exception-mappings>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
 
-        <!-- Other action mappings -->
+		<!-- Other action mappings -->
 
-        <action name="updateSports" class="org.apache.struts.helloworld.action.HelloWorldAction" method="updateSports">
-            <result name="success">/helloWorld.jsp</result>
-            <result name="input">/helloWorld.jsp</result>
-        </action>
+		<action name="updateSports"
+			class="org.apache.struts.helloworld.action.HelloWorldAction"
+			method="updateSports">
+			<result name="success">/helloWorld.jsp</result>
+			<result name="input">/helloWorld.jsp</result>
+		</action>
 
-        <action name="helloWorld" class="org.apache.struts.helloworld.action.HelloWorldAction" method="helloWorld">
-            <result name="success">/helloWorld.jsp</result>
-            <result name="input">/HelloWorld.jsp</result>
-        </action>
+		<action name="helloWorld"
+			class="org.apache.struts.helloworld.action.HelloWorldAction"
+			method="helloWorld">
+			<result name="success">/helloWorld.jsp</result>
+			<result name="input">/HelloWorld.jsp</result>
+		</action>
 
-    </package>
+		<action name="register"
+			class="org.apache.struts.register.action.Register" method="execute">
+			<interceptor-ref name="timer" />
+			<interceptor-ref name="logger" />
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">ERROR</param>
+			</interceptor-ref>
+			<result name="success">thankyou.jsp</result>
+			<result name="input">register.jsp</result>
+		</action>
+
+		<action name="hello"
+			class="org.apache.struts.helloworld.action.HelloWorldAction"
+			method="execute">
+			<result name="success">/HelloWorld.jsp</result>
+		</action>
+
+		<!-- Mapping for "hello2" action -->
+		<action name="hello2"
+			class="org.apache.struts.helloworld.action.HelloWorldAction"
+			method="execute">
+			<result name="success">/HelloWorld2.jsp</result>
+		</action>
+
+		<!-- Mapping for "hello3" action -->
+		<action name="hello3"
+			class="org.apache.struts.helloworld.action.HelloWorldAction"
+			method="execute">
+			<result name="success">/HelloWorld3.jsp</result>
+		</action>
+
+	</package>
 </struts>
